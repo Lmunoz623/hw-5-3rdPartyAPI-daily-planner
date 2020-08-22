@@ -43,29 +43,8 @@ $(document).ready(function () {
 
         timeDiv.text(timeSlots[i]);
 
-
-
-        var time = i + 8;
-        console.log(time);
-        var currTime = moment().format("HH");
-        var currentTimeInt = parseInt(currTime);
-
-    // Compares times to display proper color code for past, present and future time blocks.
-        if (time < currentTimeInt) {
-            descriptionDiv.attr("class", "past col-10");
-        } else if (time === currentTimeInt) {
-            descriptionDiv.attr("class", "present col-10");
-        } else if (time > currentTimeInt) {
-            descriptionDiv.attr("class", "future col-10");
-        }   
-            
-        
-
-    }
-   
-
-    // Click event is added to save button.
-    // Allows for information typed in text area to be saved to local storage.
+        // Click event is added to save button.
+        // Allows for information typed in text area to be saved to local storage.
         $(".saveBtn").on("click", function() {
             var val = $(this).siblings("textarea").val();
             var key = $(this).parent().attr("id");
@@ -74,7 +53,7 @@ $(document).ready(function () {
             console.log(key);
         })
 
-    // Pulls information from local storage and displays in corresponding text area.
+        // Pulls information from local storage and displays in corresponding text area.
         function retrieveData() {
 
             $("#8am .description").val(localStorage.getItem("8am"));
@@ -90,6 +69,25 @@ $(document).ready(function () {
         }
 
         retrieveData();
+
+        var time = i + 8;
+        console.log(time);
+        var currTime = moment().format("HH");
+        var currentTimeInt = parseInt(currTime);
+
+    // Compares times to display proper color code for past, present and future time blocks.
+        if (time < currentTimeInt) {
+            descriptionDiv.attr("class", "past col-10");
+        } else if (time === currentTimeInt) {
+            descriptionDiv.attr("class", "present col-10");
+        } else if (time > currentTimeInt) {
+            descriptionDiv.attr("class", "future col-10");
+        }  
+            
+    }
+   
+
+
 
 });
 
